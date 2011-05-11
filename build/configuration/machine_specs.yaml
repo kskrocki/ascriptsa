@@ -1,0 +1,4 @@
+specs:
+  dir: artifacts/specs
+  report_dir: artifacts/specs/report
+  tools_folder: packages/Machine.Specifications.0.4.9.0/tools

@@ -1,0 +1,8 @@
+project: nothinbutdotnetstore
+target: Debug
+source_dir: source
+artifacts_dir: artifacts
+config_dir: source/config
+app_dir: source/nothinbutdotnetstore.web.ui
+log_file_name: NBDNStoreLog.txt
+log_level: DEBUG
