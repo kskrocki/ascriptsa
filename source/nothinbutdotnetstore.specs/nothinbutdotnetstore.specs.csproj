@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="BasicRequestHandlerSpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
+    <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="SomeClass.cs" />
