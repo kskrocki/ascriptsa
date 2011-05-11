@@ -50,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="build.bat" />
-    <None Include="docs\converntions.markdown" />
+    <None Include="docs\conventions.markdown" />
     <None Include="fetch_latest" />
     <None Include="push" />
     <None Include="push_latest_work.ps1" />
