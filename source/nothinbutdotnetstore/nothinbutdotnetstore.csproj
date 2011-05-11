@@ -78,6 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\core\BasicRequestHandler.cs" />
+    <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\IContainRequestInformation .cs" />
+    <Compile Include="web\core\ICreateRequests.cs" />
+    <Compile Include="web\core\IFindSpecificRequestHandlers.cs" />
+    <Compile Include="web\core\IProcessApplicationRequests .cs" />
+    <Compile Include="web\core\IProcessAUniqueRequest .cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
