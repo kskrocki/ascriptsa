@@ -46,5 +46,31 @@ namespace nothinbutdotnetstore.specs
             static IContainRequestInformation request;
             static IList<IProcessOneUniqueRequest> all_possible_commands;
         }
+        public class when_attempting_to_find_a_handler_and_it_does_not_have_it : concern
+        {
+
+            Establish c = () =>
+            {
+                the_special_case = fake.an<IProcessOneUniqueRequest>();
+                depends.on<MissingHandlerFactory>(() => the_special_case);
+                all_possible_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessOneUniqueRequest>()).ToList();
+                depends.on<IEnumerable<IProcessOneUniqueRequest>>(all_possible_commands);
+                request = fake.an<IContainRequestInformation>();
+
+            };
+
+            Because b = () =>
+                result = sut.get_the_command_that_can_process(request);
+
+
+            It should_return_the_special_case = () =>
+                result.ShouldEqual(the_special_case);
+
+
+            static IProcessOneUniqueRequest result;
+            static IContainRequestInformation request;
+            static IList<IProcessOneUniqueRequest> all_possible_commands;
+            static IProcessOneUniqueRequest the_special_case;
+        }
     }
 }
