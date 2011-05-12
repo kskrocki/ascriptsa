@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <configuration>
-  <appSettings>
-    <add key="some_value" value="<%=configatron.cool_setting%>"/>
-  </appSettings>
   <system.data>
     <DbProviderFactories>
         <remove invariant="System.Data.SQLite"/>
@@ -20,11 +17,11 @@
     <pages autoEventWireup="false">
     </pages>
     <authentication mode="Windows"/>
-    <!--<httpHandlers>
-      <add path=""
+    <httpHandlers>
+      <add path="*.allscripts"
         verb="*"
-        type=""/>
-        </httpHandlers>-->
+        type="nothinbutdotnetstore.web.core.BasicRequestHandler,nothinbutdotnetstore"/>
+    </httpHandlers>
    </system.web>
   <system.webServer>
   </system.webServer>

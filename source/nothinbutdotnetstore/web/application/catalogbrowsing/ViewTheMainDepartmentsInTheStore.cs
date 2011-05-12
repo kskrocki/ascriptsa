@@ -1,5 +1,6 @@
-using System;
+using nothinbutdotnetstore.web.application.stubs;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
@@ -8,7 +9,13 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
     IFindDepartments department_repository;
     IDisplayReportModels reporting_engine;
 
-    public ViewTheMainDepartmentsInTheStore(IFindDepartments department_repository, IDisplayReportModels reporting_engine)
+    public ViewTheMainDepartmentsInTheStore() : this(new StubDepartmentsRepository(),
+                                                     new StubReportEngine())
+    {
+    }
+
+    public ViewTheMainDepartmentsInTheStore(IFindDepartments department_repository,
+                                            IDisplayReportModels reporting_engine)
     {
       this.department_repository = department_repository;
       this.reporting_engine = reporting_engine;
