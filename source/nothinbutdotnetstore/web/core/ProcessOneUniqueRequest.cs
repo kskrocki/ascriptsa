@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.web.core
 
     public bool can_handle(IContainRequestInformation request)
     {
-      return true;
+      return request.IsValid;
     }
   }
 }
