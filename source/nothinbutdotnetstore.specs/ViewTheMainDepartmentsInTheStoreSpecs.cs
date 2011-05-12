@@ -1,12 +1,14 @@
+using System.Collections.Generic;
+using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
+using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
 using nothinbutdotnetstore.web.core;
-using developwithpassion.specifications.extensions;
 
 namespace nothinbutdotnetstore.specs
 {
-    [Subject(typeof(ViewTheMainDepartmentsInTheStore))]
+  [Subject(typeof(ViewTheMainDepartmentsInTheStore))]
   public class ViewTheMainDepartmentsInTheStoreSpecs
   {
     public abstract class concern : Observes<IProcessApplicationSpecificBehaviour,
@@ -19,42 +21,26 @@ namespace nothinbutdotnetstore.specs
       Establish c = () =>
       {
         request = fake.an<IContainRequestInformation>();
+        department_repository = depends.on<IFindDepartments>();
+        the_main_departments = new List<DepartmentItem> {new DepartmentItem()};
+        report_engine = depends.on<IDisplayReportModels>();
 
-          list_of_main_depts = depends.on<IListOfMainDepts>();
-          displayer = depends.on<IDisplayData>();
+        department_repository.setup(x => x.get_the_main_departments_in_the_store()).Return(the_main_departments);
       };
 
       Because b = () =>
         sut.run(request);
 
 
-      It should_find_the_main_depts_for_the_store = () => list_of_main_depts.received(x => x.Load()) ;       
+      It should_display_the_main_departments =
+        () =>
+          report_engine.received(x => x.display(the_main_departments));
 
-                                        /* find the main depts
-                                         * display the main depts
-                                         * provide access to the list of main depts
-                                         * return a list of main depts
-                                         * prepare a list of main depts and forward to a view of the list
-                                         */
-
-      It should_display_the_main_depts_for_the_store = () => /* "for_the_store" repeating ourselves? */
-      {
-          displayer.received(x => x.Display(list_of_main_depts));
-      }; 
 
       static IContainRequestInformation request;
-        static IListOfMainDepts list_of_main_depts;
-        static IDisplayData displayer;
+      static IFindDepartments department_repository;
+      static IDisplayReportModels report_engine;
+      static IEnumerable<DepartmentItem> the_main_departments;
     }
   }
-
-    public interface IDisplayData
-    {
-        void Display(IListOfMainDepts list_of_main_depts);
-    }
-
-    public interface IListOfMainDepts
-    {
-        void Load();
-    }
 }

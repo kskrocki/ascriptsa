@@ -78,13 +78,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
+    <Compile Include="web\application\IFindDepartments.cs" />
     <Compile Include="web\core\BasicRequestHandler.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation .cs" />
     <Compile Include="web\core\ICreateRequests.cs" />
     <Compile Include="web\core\IDisplayData.cs" />
+    <Compile Include="web\core\IDisplayReportModels.cs" />
     <Compile Include="web\core\IFindSpecificRequestHandlers.cs" />
     <Compile Include="web\core\IncomingRequestMeetsCriteria.cs" />
     <Compile Include="web\core\IProcessApplicationRequests .cs" />
