@@ -1,36 +1,47 @@
- using developwithpassion.specifications.rhinomocks;
- using Machine.Specifications;
- using developwithpassion.specifications.extensions;
- using nothinbutdotnetstore.web.core;
- using Arg = Moq.It;
+using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
+using nothinbutdotnetstore.web.core;
+using Arg = Moq.It;
 
 namespace nothinbutdotnetstore.specs
-{   
-    public class ProcessOneUniqueRequestSpecs
+{
+  public class ProcessOneUniqueRequestSpecs
+  {
+    public abstract class concern : Observes<IProcessOneUniqueRequest,
+                                      ProcessOneUniqueRequest>
     {
-        public abstract class concern : Observes<IProcessOneUniqueRequest,
-                                            ProcessOneUniqueRequest>
-        {
-        
-        }
-
-        [Subject(typeof(IProcessOneUniqueRequest))]
-        public class when_processing_one_unique_request : concern
-        {
-            Establish c = () =>
-            {
-                request = fake.an<IContainRequestInformation>();
-            };
-
-            Because b = () =>
-                result = sut.ProcessOneUniqueRequest.can_handle(request);
-
-            It should_inform_us_that_it_can_handle = () =>
-                result.Equals(true);
-
-
-            static IContainRequestInformation request;
-            static bool result;
-        }
     }
+
+    [Subject(typeof(IProcessOneUniqueRequest))]
+    public class when_determining_if_it_can_process_a_request : concern
+    {
+      public class and_it_can_proces_it : when_determining_if_it_can_process_a_request
+      {
+        Establish c = () => { request = fake.an<IContainRequestInformation>(); };
+
+        Because b = () =>
+          result = sut.can_handle(request);
+
+        It should_inform_us_that_it_can_handle = () =>
+          result.ShouldBeTrue();
+
+        static IContainRequestInformation request;
+        static bool result;
+      }
+
+      public class and_it_cannot_process_it : when_determining_if_it_can_process_a_request
+      {
+        Establish c = () => { request = fake.an<IContainRequestInformation>(); };
+
+        Because b = () =>
+          result = sut.can_handle(request);
+
+        It should_inform_us_that_it_can_handle = () =>
+          result.ShouldBeFalse();
+
+        static IContainRequestInformation request;
+        static bool result;
+      }
+    }
+  }
 }
