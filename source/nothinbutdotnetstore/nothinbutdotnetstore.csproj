@@ -81,6 +81,7 @@
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\application\IFindDepartments.cs" />
+    <Compile Include="web\application\stubs\StubDepartmentsRepository.cs" />
     <Compile Include="web\core\BasicRequestHandler.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
@@ -95,6 +96,10 @@
     <Compile Include="web\core\IProcessAUniqueRequest .cs" />
     <Compile Include="web\core\MissingHandlerFactory.cs" />
     <Compile Include="web\core\ProcessOneUniqueRequest.cs" />
+    <Compile Include="web\core\stubs\StubMissingRequestHandler.cs" />
+    <Compile Include="web\core\stubs\StubReportEngine.cs" />
+    <Compile Include="web\core\stubs\StubRequestFactory.cs" />
+    <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

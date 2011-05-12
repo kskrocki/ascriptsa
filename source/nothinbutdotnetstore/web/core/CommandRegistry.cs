@@ -1,12 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core
 {
     public class CommandRegistry : IFindSpecificRequestHandlers
     {
-        IEnumerable<IProcessOneUniqueRequest> handlers;
-        MissingHandlerFactory missing_handler_factory;
+      IEnumerable<IProcessOneUniqueRequest> handlers;
+
+      public CommandRegistry():this(new StubSetOfCommands(),
+        StubMissingRequestHandler.create())
+      {
+      }
+
+      MissingHandlerFactory missing_handler_factory;
 
         public CommandRegistry(IEnumerable<IProcessOneUniqueRequest> handlers,
                                MissingHandlerFactory missing_handler_factory)
