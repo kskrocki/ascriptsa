@@ -18,7 +18,6 @@ namespace nothinbutdotnetstore.specs
         [Subject(typeof(CommandRegistry))]
         public class when_finding_the_command_that_can_process_a_request_and_it_has_the_command : concern
         {
-
             Establish c = () =>
             {
                 all_possible_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessOneUniqueRequest>()).ToList();
