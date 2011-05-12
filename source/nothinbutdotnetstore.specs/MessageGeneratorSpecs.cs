@@ -1,4 +1,4 @@
-using developwithpassion.specifications.moq;
+using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 
 namespace nothinbutdotnetstore.specs

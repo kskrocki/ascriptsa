@@ -1,8 +1,7 @@
  using Machine.Specifications;
- using developwithpassion.specifications.moq;
+ using developwithpassion.specifications.rhinomocks;
  using developwithpassion.specifications.extensions;
  using nothinbutdotnetstore.web.core;
- using Arg = Moq.It;
 
 namespace nothinbutdotnetstore.specs
 {   
