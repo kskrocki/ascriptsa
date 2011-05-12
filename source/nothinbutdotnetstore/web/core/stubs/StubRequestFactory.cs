@@ -1,4 +1,6 @@
+using System;
 using System.Web;
+using nothinbutdotnetstore.web.application.catalogbrowsing;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -11,6 +13,11 @@ namespace nothinbutdotnetstore.web.core.stubs
 
     class StubRequest : IContainRequestInformation
     {
+        public DepartmentItem SelectedDepartment
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
     }
   }
 }

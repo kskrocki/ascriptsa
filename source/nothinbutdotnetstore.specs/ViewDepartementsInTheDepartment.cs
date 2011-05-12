@@ -2,12 +2,10 @@
  using System.Collections.Generic;
  using developwithpassion.specifications.rhinomocks;
  using Machine.Specifications;
- using developwithpassion.specifications.moq;
  using developwithpassion.specifications.extensions;
  using nothinbutdotnetstore.web.application;
  using nothinbutdotnetstore.web.application.catalogbrowsing;
  using nothinbutdotnetstore.web.core;
- using Arg = Moq.It;
 
 namespace nothinbutdotnetstore.specs
 {   
@@ -58,5 +56,4 @@ namespace nothinbutdotnetstore.specs
             throw new NotImplementedException();
         }
     }
-}
 }
