@@ -1,3 +1,4 @@
+using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using nothinbutdotnetstore.web.core;
@@ -15,33 +16,49 @@ namespace nothinbutdotnetstore.specs
     [Subject(typeof(IProcessOneUniqueRequest))]
     public class when_determining_if_it_can_process_a_request : concern
     {
-      public class and_it_can_proces_it : when_determining_if_it_can_process_a_request
+      Establish c = () =>
       {
-        Establish c = () => { request = fake.an<IContainRequestInformation>(); };
+        request = fake.an<IContainRequestInformation>();
+        the_result_returned_by_the_specification = true;
+        depends.on<IncomingRequestMeetsCriteria>(x =>
+        {
+          specification_was_leveraged = true;
+          return true;
+        });
+      };
 
-        Because b = () =>
-          result = sut.can_handle(request);
+      Because b = () =>
+        result = sut.can_handle(request);
 
-        It should_inform_us_that_it_can_handle = () =>
-          result.ShouldBeTrue();
+      It should_make_its_determination_by_using_its_request_specification =
+        () =>
+        {
+          specification_was_leveraged.ShouldBeTrue();
+          result.ShouldEqual(the_result_returned_by_the_specification);
+        };
 
-        static IContainRequestInformation request;
-        static bool result;
-      }
+      static IContainRequestInformation request;
+      static bool result;
+      static bool the_result_returned_by_the_specification;
+      static bool specification_was_leveraged;
+    }
 
-      public class and_it_cannot_process_it : when_determining_if_it_can_process_a_request
+    public class when_running_a_request : concern
+    {
+      Establish c = () =>
       {
-        Establish c = () => { request = fake.an<IContainRequestInformation>(); };
+        application_behaviour = depends.on<IProcessApplicationSpecificBehaviour>();
+        request = fake.an<IContainRequestInformation>();
+      };
 
-        Because b = () =>
-          result = sut.can_handle(request);
+      Because b = () =>
+        sut.run(request);
 
-        It should_inform_us_that_it_can_handle = () =>
-          result.ShouldBeFalse();
+      It should_run_the_application_specific_behaviour =
+        () => { application_behaviour.received(x => x.run(request)); };
 
-        static IContainRequestInformation request;
-        static bool result;
-      }
+      static IContainRequestInformation request;
+      static IProcessApplicationSpecificBehaviour application_behaviour;
     }
   }
 }
