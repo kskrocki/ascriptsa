@@ -1,5 +1,4 @@
- using System;
- using System.Collections.Generic;
+using System.Collections.Generic;
  using developwithpassion.specifications.rhinomocks;
  using Machine.Specifications;
  using developwithpassion.specifications.extensions;
@@ -9,28 +8,28 @@
 
 namespace nothinbutdotnetstore.specs
 {   
-    public class ViewDepartementsInTheDepartment
+    public class ViewDepartementsInADepartmentSpecs
     {
         public abstract class concern : Observes<IProcessApplicationSpecificBehaviour,
-                                            ViewDepartmentsInTheDepartment>
+                                            ViewTheDepartmentsInADepartment>
         {
         
         }
 
-        [Subject(typeof(ViewDepartmentsInTheDepartment))]
+        [Subject(typeof(ViewTheDepartmentsInADepartment))]
         public class when_run : concern
         {
               Establish c = () =>
               {
                 request = fake.an<IContainRequestInformation>();
-                DepartmentItem testdepartment = new DepartmentItem();
+                var testdepartment = new DepartmentItem();
 
                 department_repository = depends.on<IFindDepartments>();
-                the_departments_list = new List<DepartmentItem> {new DepartmentItem()};
+                the_sub_departments = new List<DepartmentItem> {new DepartmentItem()};
                 report_engine = depends.on<IDisplayReportModels>();
 
-                request.setup(x => x.SelectedDepartment).Return(testdepartment);
-                department_repository.setup(x => x.get_departments_in_the_department(request.SelectedDepartment)).Return(the_departments_list);
+                request.setup(x => x.map<DepartmentItem>()).Return(testdepartment);
+                department_repository.setup(x => x.get_departments_in(testdepartment)).Return(the_sub_departments);
               };
 
               Because b = () =>
@@ -39,21 +38,13 @@ namespace nothinbutdotnetstore.specs
 
               It should_display_the_departments_in_the_department =
                 () =>
-                  report_engine.received(x => x.display(the_departments_list));
+                  report_engine.received(x => x.display(the_sub_departments));
 
 
               static IContainRequestInformation request;
               static IFindDepartments department_repository;
               static IDisplayReportModels report_engine;
-              static IEnumerable<DepartmentItem> the_departments_list;
+              static IEnumerable<DepartmentItem> the_sub_departments;
             }                
         }
-
-    public class ViewDepartmentsInTheDepartment: IProcessApplicationSpecificBehaviour
-    {
-        public void run(IContainRequestInformation request)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

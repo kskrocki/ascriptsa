@@ -6,6 +6,6 @@ namespace nothinbutdotnetstore.web.application
   public interface IFindDepartments
   {
     IEnumerable<DepartmentItem> get_the_main_departments_in_the_store();
-    IEnumerable<DepartmentItem> get_departments_in_the_department(DepartmentItem selected_department);
+    IEnumerable<DepartmentItem> get_departments_in(DepartmentItem selected_department);
   }
 }

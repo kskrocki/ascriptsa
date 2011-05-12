@@ -13,11 +13,12 @@ namespace nothinbutdotnetstore.web.core.stubs
 
     class StubRequest : IContainRequestInformation
     {
-        public DepartmentItem SelectedDepartment
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
+
+      InputModel IContainRequestInformation.map<InputModel>()
+      {
+        object department = new DepartmentItem();
+        return (InputModel) department;
+      }
     }
   }
 }
